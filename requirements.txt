@@ -7,4 +7,4 @@ llama-index>=0.8.5
 llama-cpp-python==0.1.9
 nltk==3.8.1
 huggingface-hub==0.16.4
-transformers==4.33.1
+sentence_transformers

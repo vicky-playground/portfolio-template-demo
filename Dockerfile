@@ -4,7 +4,7 @@ RUN groupadd -r myuser && useradd -r -g myuser myuser
 
 USER root 
 
-WORKDIR /portfolio-template
+WORKDIR /portfolio-template-demo
 
 COPY . .
 

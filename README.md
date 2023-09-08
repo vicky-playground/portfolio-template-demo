@@ -3,7 +3,7 @@ A simple portfolio website built with Streamlit. The website is deployed [here](
 
 ## Copy this repo
 ```
-git clone https://github.com/vicky-playground/portfolio-template
+git clone [https://github.com/vicky-playground/portfolio-template](https://github.com/vicky-playground/portfolio-template-demo)
 ```
 ## Installation
 ```

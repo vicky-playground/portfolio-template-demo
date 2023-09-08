@@ -9,7 +9,7 @@ git clone [https://github.com/vicky-playground/portfolio-template](https://githu
 ```
 pip install -r requirements.txt
 ```
-💡 If `[Errno 2] No such file or directory: 'requirements.txt'` occurs, create a requirements file with the below command first.
+
 ```
 pip freeze > requirements.txt
 ```

@@ -8,8 +8,7 @@ from langchain.llms import HuggingFaceEndpoint
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 from langchain import HuggingFaceHub
 
-
-# Storing the conversation history in a List
+# Store the conversation history in a List
 conversation_history = []
 
 def ask_bot(input_text):
@@ -37,7 +36,7 @@ def ask_bot(input_text):
     index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
 
     PROMPT_QUESTION = """
-        You are the website assistant named IBM Skills Network, greeting users and helping users to get answers regarding this website.
+        You are the website assistant named IBM Skills Network, helping users to get answers regarding this website.
         
         History:
         "{history}"
@@ -87,6 +86,8 @@ local_css("style/style.css")
 
 # Load animation assets
 lottie_gif = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_x17ybolp.json")
+
+
 python_lottie = load_lottieurl("https://assets6.lottiefiles.com/packages/lf20_2znxgjyt.json")
 java_lottie = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_zh6xtlj9.json")
 my_sql_lottie = load_lottieurl("https://assets4.lottiefiles.com/private_files/lf30_w11f2rwn.json")
@@ -99,7 +100,6 @@ aws_lottie = load_lottieurl("https://lottie.host/6eae8bdc-74d1-4b5d-9eb7-3766227
 from constant import *
 
 st.sidebar.markdown(info['Photo'],unsafe_allow_html=True)
-
 
 def gradient(color1, color2, color3, content1, content2):
     st.markdown(f'<h1 style="text-align:center;background-image: linear-gradient(to right,{color1}, {color2});font-size:60px;border-radius:2%;">'
@@ -117,7 +117,6 @@ with col1:
     
 with col2:
     st_lottie(lottie_gif, height=280, key="data")
-
 
 with st.container():
     st.subheader('⚒️ Skills')
@@ -182,7 +181,6 @@ with st.container():
             components.html(embed_rss['rss'],height=400)
             
         st.markdown(""" <a href={}> <em>🔗 access to the link </a>""".format(info['Medium']), unsafe_allow_html=True)
-
 
 with st.container():
     col1,col2,col3 = st.columns([0.475, 0.475, 0.05])

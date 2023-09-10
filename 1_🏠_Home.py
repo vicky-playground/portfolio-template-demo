@@ -1,54 +1,35 @@
 import streamlit as st
-import requests
-from streamlit_lottie import st_lottie
-from streamlit_timeline import timeline
-import streamlit.components.v1 as components
-from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader, LLMPredictor, ServiceContext
-from constant import *
-from PIL import Image
-# Llamaindex also works with langchain framework to implement embeddings
-from langchain.embeddings.huggingface import HuggingFaceEmbeddings
-from langchain import HuggingFaceHub
-from langchain.llms import HuggingFaceEndpoint
-from llama_index import GPTVectorStoreIndex
-from llama_index import LLMPredictor, ServiceContext, LangchainEmbedding
-
 st.set_page_config(page_title='Template' ,layout="wide",page_icon='👧🏻')
 
-# -----------------  chatbot  ----------------- #
+# Importing necessary libraries
+from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader, LLMPredictor, ServiceContext, LangchainEmbedding
+# Llamaindex also works with langchain framework to implement embeddings to configure the Falcon-7B-Instruct model from Hugging Face 
+from langchain.llms import HuggingFaceEndpoint
 
-#Storing the conversation history in a List
+# Storing the conversation history in a List
 conversation_history = []
 
 def ask_bot(input_text):
     # load the file
     documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
-    
-
-
     # prepare Falcon Huggingface API
     llm = HuggingFaceEndpoint(
                 endpoint_url= "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct" ,
-                huggingfacehub_api_token="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",
+                huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
                 task="text-generation",
                 model_kwargs = {
                     "max_new_tokens":200 # define the maximum number of tokens the model may produce in its answer         
                 }
             )
-
     # LLMPredictor: to generate the text response (Completion)
     llm_predictor = LLMPredictor(llm=llm)
-
-    # LangchainEmbedding: to convert text to embedding vector	
-    # Hugging Face models can be supported by using LangchainEmbedding					  
+    # Hugging Face models can be supported by using LangchainEmbedding to convert text to embedding vector	
     embed_model = LangchainEmbedding(HuggingFaceEmbeddings())
-
     # ServiceContext: to encapsulate the resources used to create indexes and run queries
     service_context = ServiceContext.from_defaults(
             llm_predictor=llm_predictor, 
             embed_model=embed_model
-        )
-        
+        )      
     # build index
     index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
 
@@ -65,16 +46,13 @@ def ask_bot(input_text):
     # update conversation history
     global conversation_history
     history_string = "\n".join(conversation_history)
-    print(f"history_string: {history_string}")
-    
-    # query LlamaIndex and GPT-3.5 for the AI's response
+    print(f"history_string: {history_string}")  
+    # query LlamaIndex and Falcon-7B-Instruct for the AI's response
     output = index.as_query_engine().query(PROMPT_QUESTION.format(history=history_string, input=input_text))
-    print(f"output: {output}")
-    
+    print(f"output: {output}")   
     # update conversation history with user input and AI's response
     conversation_history.append(input_text)
     conversation_history.append(output.response)
-    
     return output.response
 
 # get the user's input by calling the get_text function
@@ -89,22 +67,22 @@ if user_input:
   #text = st.text_area('Enter your questions')
     st.info(ask_bot(user_input))
 
-# -----------------  loading assets  ----------------- #
-st.sidebar.markdown(info['Photo'],unsafe_allow_html=True)
-    
+import requests
+from streamlit_lottie import st_lottie
+
 def load_lottieurl(url: str):
     r = requests.get(url)
     if r.status_code != 200:
         return None
     return r.json()
-
+    
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
         
 local_css("style/style.css")
 
-# loading assets
+# Load animation assets
 lottie_gif = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_x17ybolp.json")
 python_lottie = load_lottieurl("https://assets6.lottiefiles.com/packages/lf20_2znxgjyt.json")
 java_lottie = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_zh6xtlj9.json")
@@ -115,9 +93,11 @@ docker_lottie = load_lottieurl("https://assets4.lottiefiles.com/private_files/lf
 figma_lottie = load_lottieurl("https://lottie.host/5b6292ef-a82f-4367-a66a-2f130beb5ee8/03Xm3bsVnM.json")
 aws_lottie = load_lottieurl("https://lottie.host/6eae8bdc-74d1-4b5d-9eb7-37662274cd19/Nduizk8IOf.json")
 
+from constant import *
+
+st.sidebar.markdown(info['Photo'],unsafe_allow_html=True)
 
 
-# ----------------- info ----------------- #
 def gradient(color1, color2, color3, content1, content2):
     st.markdown(f'<h1 style="text-align:center;background-image: linear-gradient(to right,{color1}, {color2});font-size:60px;border-radius:2%;">'
                 f'<span style="color:{color3};">{content1}</span><br>'
@@ -127,7 +107,6 @@ def gradient(color1, color2, color3, content1, content2):
 with st.container():
     col1,col2 = st.columns([8,3])
 
-
 with col1:
     gradient('#FFD4DD','#000395','e0fbfc',"Hi, I'm TEMPLATE👋", "Lorem ipsum dolor sit amet, eu quo liber nonumes vivendum")
     st.write("")
@@ -135,9 +114,8 @@ with col1:
     
 with col2:
     st_lottie(lottie_gif, height=280, key="data")
-        
 
-# ----------------- skillset ----------------- #
+
 with st.container():
     st.subheader('⚒️ Skills')
     col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
@@ -157,21 +135,18 @@ with st.container():
         st_lottie(figma_lottie,height=50,width=50, key="figma", speed=2.5)
     with col4:
         st_lottie(aws_lottie,height=50,width=50, key="aws", speed=2.5)
-    
-    
-# ----------------- timeline ----------------- #
+
 with st.container():
     st.markdown("""""")
     st.subheader('📌 Career Snapshot')
-
-    # load data
+    # Load data
     with open('example.json', "r") as f:
         data = f.read()
-
-    # render timeline
+    # Render timeline
     timeline(data, height=400)
 
-# -----------------  tableau  -----------------  #
+import streamlit.components.v1 as components
+    
 with st.container():
     st.markdown("""""")
     st.subheader("📊 Tableau")
@@ -191,8 +166,7 @@ with st.container():
             , height=400, scrolling=True
             )
     st.markdown(""" <a href={}> <em>🔗 access to the link </a>""".format(info['Tableau']), unsafe_allow_html=True)
-    
-# ----------------- medium ----------------- #
+
 with st.container():
     st.markdown("""""")
     st.subheader('✍️ Medium')
@@ -200,11 +174,11 @@ with st.container():
     col1,col2 = st.columns([0.95, 0.05])
     with col1:
         with st.expander('Display my latest posts'):
-            components.html(embed_rss['rss'],height=400)
+            components.html(embed_rss['medium'],height=400)
             
         st.markdown(""" <a href={}> <em>🔗 access to the link </a>""".format(info['Medium']), unsafe_allow_html=True)
 
-# -----------------  contact  ----------------- #
+
 with st.container():
     col1,col2,col3 = st.columns([0.475, 0.475, 0.05])
         
@@ -328,12 +302,13 @@ with st.container():
             """,
                 height=270,
     )
+
     with col2:
         st.write("---")
         st.subheader("📨 Get in touch with me!")
-        
+
         contact_form = """
-        <form action="https://formsubmit.co/your-email@gmail.com" method="POST">
+        <form action="https://formsubmit.co/email@gmail.com" method="POST">
             <input type="hidden" name="_captcha value="false">
             <input type="text" name="name" placeholder="Your name" required>
             <input type="email" name="email" placeholder="Your email" required>
@@ -342,8 +317,7 @@ with st.container():
         </form>
         """
         st.markdown(contact_form, unsafe_allow_html=True)
-        
-# -----------------  footer  ----------------- #
+
 footer="""
 <div class="footer">
 <p>Developed with Streamlit by <a href="https://cognitiveclass.ai/" target="_blank">IBM Skills Network</a></p></div>

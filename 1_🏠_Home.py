@@ -136,6 +136,8 @@ with st.container():
     with col4:
         st_lottie(aws_lottie,height=50,width=50, key="aws", speed=2.5)
 
+from streamlit_timeline import timeline
+
 with st.container():
     st.markdown("""""")
     st.subheader('📌 Career Snapshot')

@@ -1,14 +1,14 @@
 info = {
-   "About":"Lorem ipsum dolor sit amet, eu quo liber nonumes vivendum, at hinc neglegentur conclusionemque per, ut eruditi appareat insolens vis. Tractatos explicari pri in, in option platonem imperdiet eum. Nec dolores nominavi voluptatum ex, id diam inciderint vim, cu dolorem fierent pro. No quem nibh appetere duo. Mollis eripuit vel in, et vis modus scriptorem efficiantur.",
+   "About":"I'm an online learning platform offering a range of courses and resources to help you become data and AI-ready. Register today to gain the skills you need to change the world. Proudly an IBM initiative.",
    "Tableau":"https://public.tableau.com/app/profile/vickytc/viz/SunnybrookTeam/Overview",
    "Medium":"https://medium.com/@vicky-note/about",
    "City":"Toronto, Canada",
-   "Photo":"""<a href=\"https://www.linkedin.com/\"><img src=\"https://user-images.githubusercontent.com/90204593/238972749-344aaaaf-18de-4759-86c8-0eb92e4cac30.png" width=\"100\" height=\"100\"  alt=\"Profile\" title=\"Profile\"></a>"""
+   "Photo":"""<a href=\"https://cognitiveclass.ai/\"><img src=\"https://sn-portals-cognitiveclass.s3.us-south.cloud-object-storage.appdomain.cloud/lmzotycs3p11f936gx1u5drchdrk" width=\"200\"   alt=\"Profile\" title=\"Profile\"></a>"""
 }
 
 embed_rss= {
     'rss':"""<div style="overflow-y: scroll; height:500px; background-color:white;"> <div id="retainable-rss-embed" 
-        data-rss="https://medium.com/feed/@vicky-note"
+        data-rss="https://medium.com/feed/the-power-of-ai"
         data-maxcols="3" 
         data-layout="grid"
         data-poststyle="inline" 

@@ -69,6 +69,7 @@ if user_input:
   #text = st.text_area('Enter your questions')
     st.info(ask_bot(user_input))
 
+
 import requests
 from streamlit_lottie import st_lottie
 
@@ -136,7 +137,8 @@ with st.container():
     with col3:
         st_lottie(figma_lottie,height=50,width=50, key="figma", speed=2.5)
     with col4:
-        st_lottie(js_lottie,height=50,width=50, key="aws", speed=1)
+        st_lottie(js_lottie,height=50,width=50, key="js", speed=1)
+
 
 from streamlit_timeline import timeline
 

@@ -36,7 +36,7 @@ def ask_bot(input_text):
     index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
 
     PROMPT_QUESTION = """
-        Your name is IBM Skills Network, helping users to get answers about you.
+        Your name is IBM Skills Network, helping users to get answers about you. Briefly introduce yourself first when you answer for the first time.
         
         History:
         "{history}"

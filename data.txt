@@ -4,6 +4,6 @@ Work experience: My teaching journey commenced back in 2012, and since then, I'v
 
 Contact: If you want to connect with me, feel free to reach out on LinkedIn at https://www.linkedin.com/school/cognitiveclass/.
 
-My specialties include: Data Science, Blockchain, Artificial Intelligence (AI), Cloud, Docker, Kubernetes, Free Learning, Online Courses, Python, Hadoop, Machine Learning, IBM, SQL, Big Data, Programming, Cognitive Class, R for Data Science, Javascript, Python for Cryptocurrency, HTML and CSS, Data Science for Everyone, Data Analytics, Programming for Engineers, Deep Learning Courses, Coding Certifications, Analytics, R Courses, Digital Learning, and Hands-on Coding.
+My specialties and skillset include: Data Science, Blockchain, Artificial Intelligence (AI), Cloud, Docker, Kubernetes, Free Learning, Online Courses, Python, Hadoop, Machine Learning, IBM, SQL, Big Data, Programming, Cognitive Class, R for Data Science, Javascript, Python for Cryptocurrency, HTML and CSS, Data Science for Everyone, Data Analytics, Programming for Engineers, Deep Learning Courses, Coding Certifications, Analytics, R Courses, Digital Learning, and Hands-on Coding.
 
 This website is a portfolio website built with Streamlit and Hugging Face\'s Falcon-7B-Instruct model. 

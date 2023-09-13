@@ -7,6 +7,7 @@ from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader, LLMPredictor
 from langchain.llms import HuggingFaceEndpoint
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 from langchain import HuggingFaceHub
+from llama_index.llm_predictor import HuggingFaceLLMPredictor
 
 # Store the conversation history in a List
 conversation_history = []
@@ -14,24 +15,25 @@ conversation_history = []
 def ask_bot(input_text):
     # load the file
     documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
-    # prepare Falcon Huggingface API
-    llm = HuggingFaceEndpoint(
-                endpoint_url= "https://api-inference.huggingface.co/models/microsoft/DialoGPT-small" ,
-                huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
-                task="text-generation",
-                model_kwargs = {
-                    "max_new_tokens":250 # define the maximum number of tokens the model may produce in its answer. Int (0-250)       
-                }
-            )
-    # LLMPredictor: to generate the text response (Completion)
-    llm_predictor = LLMPredictor(llm=llm)
-    # Hugging Face models can be supported by using LangchainEmbedding to convert text to embedding vector	
-    embed_model = LangchainEmbedding(HuggingFaceEmbeddings())
-    # ServiceContext: to encapsulate the resources used to create indexes and run queries
+    
+    stablelm_predictor = HuggingFaceLLMPredictor(
+        max_input_size=4096, 
+        max_new_tokens=256,
+        generate_kwargs={"temperature": 0.7, "do_sample": False}
+        system_prompt=system_prompt,
+        query_wrapper_prompt=query_wrapper_prompt,
+        tokenizer_name="StabilityAI/stablelm-tuned-alpha-3b",
+        model_name="StabilityAI/stablelm-tuned-alpha-3b",
+        device_map="auto",
+        stopping_ids=[50278, 50279, 50277, 1, 0],
+        tokenizer_kwargs={"max_length": 4096},
+        # uncomment this if using CUDA to reduce memory usage
+        # model_kwargs={"torch_dtype": torch.float16}
+    )
     service_context = ServiceContext.from_defaults(
-            llm_predictor=llm_predictor, 
-            embed_model=embed_model
-        )      
+        chunk_size=1024, 
+        llm_predictor=stablelm_predictor
+    )
     # build index
     index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
 

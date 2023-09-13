@@ -16,7 +16,7 @@ def ask_bot(input_text):
     documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
     # prepare Falcon Huggingface API
     llm = HuggingFaceEndpoint(
-                endpoint_url= "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill" ,
+                endpoint_url= "https://api-inference.huggingface.co/models/WizardLM/WizardCoder-Python-34B-V1.0" ,
                 huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
                 task="text-generation",
                 model_kwargs = {
@@ -36,7 +36,7 @@ def ask_bot(input_text):
     index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
 
     PROMPT_QUESTION = """
-        You name is IBM Skills Network. You are letting a recruiter to get to know you more in an enthusiastic and polite way. Briefly introduce yourself first when you answer for the first time.
+        Your name is IBM Skills Network. You are providing the answer to the question based on the given context. Briefly introduce yourself first when you answer for the first time.
         Your conversation with the human is recorded in the chat history below. After the self-introduction, you don't need to repeat mentioning your name or introducing yourself actively. If the recruiter asks about the skills or experiences you have with url links, answer it with the link.
         
         History:

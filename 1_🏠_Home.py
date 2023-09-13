@@ -32,17 +32,27 @@ PROMPT_QUESTION = """
 query_wrapper_prompt = SimpleInputPrompt(f"{PROMPT_QUESTION}<|USER|>{query_str}<|ASSISTANT|>")
 
 
-stablelm_predictor = HuggingFaceLLMPredictor(
-    max_input_size=4096, 
-    max_new_tokens=256,
-    generate_kwargs={"temperature": 0.7, "do_sample": False},
-    query_wrapper_prompt=query_wrapper_prompt,
-    tokenizer_name="StabilityAI/stablelm-tuned-alpha-3b",
-    model_name="StabilityAI/stablelm-tuned-alpha-3b",
-    device_map="auto",
-    stopping_ids=[50278, 50279, 50277, 1, 0],
-    tokenizer_kwargs={"max_length": 4096},
-)
+ llm = HuggingFaceEndpoint(
+                endpoint_url= "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct" ,
+                huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
+                task="text-generation",
+                temperature=0.7,
+                model_kwargs = {
+                    "max_new_tokens":250 # define the maximum number of tokens the model may produce in its answer. Int (0-250)       
+                }
+            )
+    # LLMPredictor: to generate the text response (Completion)
+    llm_predictor = LLMPredictor(
+        llm=llm,
+        system_prompt=system_prompt, # added in llama-index by myself
+        query_wrapper_prompt=query_wrapper_prompt # added in llama-index by myself
+    )
+                                 
+    # Hugging Face models can be supported by using LangchainEmbedding to convert text to embedding vector	
+    embed_model = LangchainEmbedding(HuggingFaceEmbeddings())
+    # ServiceContext: to encapsulate the resources used to create indexes and run queries
+
+     
 service_context = ServiceContext.from_defaults(
     chunk_size=1024, 
     llm_predictor=stablelm_predictor

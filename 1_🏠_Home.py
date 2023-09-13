@@ -16,10 +16,31 @@ conversation_history = []
 # load the file
 documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
 
-
-
-
 def ask_bot(input_text):
+
+    llm = HuggingFaceEndpoint(
+                    endpoint_url= "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct" ,
+                    huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
+                    task="text-generation",
+                    model_kwargs = {
+                        "max_new_tokens":256 # define the maximum number of tokens the model may produce in its answer. Int (0-250)       
+                    }
+                )
+    # LLMPredictor: to generate the text response (Completion)
+    llm_predictor = LLMPredictor(
+            llm=llm
+    )
+                                     
+    # Hugging Face models can be supported by using LangchainEmbedding to convert text to embedding vector	
+    embed_model = LangchainEmbedding(HuggingFaceEmbeddings())
+    # ServiceContext: to encapsulate the resources used to create indexes and run queries    
+    service_context = ServiceContext.from_defaults(
+            llm_predictor=llm_predictor, 
+            embed_model=embed_model
+    )      
+    # build index
+    index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
+
     PROMPT_QUESTION = """
     Your name is IBM Skills Network. You are providing the answer to the question based on the given context. Briefly introduce yourself first when you answer for the first time.
     Your conversation with the human is recorded in the chat history below. After the self-introduction, you don't need to repeat mentioning your name or introducing yourself actively. If the recruiter asks about the skills or experiences you have with url links, answer it with the link.
@@ -34,33 +55,6 @@ def ask_bot(input_text):
     # This will wrap the default prompts that are internal to llama-index
     query_wrapper_prompt = SimpleInputPrompt(f"{PROMPT_QUESTION}<|USER|>{input_text}<|ASSISTANT|>")
     
-    
-    llm = HuggingFaceEndpoint(
-                    endpoint_url= "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct" ,
-                    huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
-                    task="text-generation",
-                    model_kwargs = {
-                        "max_new_tokens":256 # define the maximum number of tokens the model may produce in its answer. Int (0-250)       
-                    }
-                )
-    # LLMPredictor: to generate the text response (Completion)
-    llm_predictor = LLMPredictor(
-            llm=llm,
-            system_prompt=PROMPT_QUESTION, # added in llama-index by myself
-            query_wrapper_prompt=query_wrapper_prompt # added in llama-index by myself
-    )
-                                     
-    # Hugging Face models can be supported by using LangchainEmbedding to convert text to embedding vector	
-    embed_model = LangchainEmbedding(HuggingFaceEmbeddings())
-    # ServiceContext: to encapsulate the resources used to create indexes and run queries    
-    service_context = ServiceContext.from_defaults(
-            llm_predictor=llm_predictor, 
-            embed_model=embed_model
-    )      
-    # build index
-    index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
-
-
     # update conversation history
     global conversation_history
     history_string = "\n".join(conversation_history)

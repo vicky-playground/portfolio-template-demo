@@ -16,11 +16,11 @@ def ask_bot(input_text):
     documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
     # prepare Falcon Huggingface API
     llm = HuggingFaceEndpoint(
-                endpoint_url= "https://api-inference.huggingface.co/models/WizardLM/WizardCoder-Python-34B-V1.0" ,
+                endpoint_url= "https://api-inference.huggingface.co/models/sentence-transformers/all-MiniLM-L6-v2" ,
                 huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
                 task="text-generation",
                 model_kwargs = {
-                    "max_new_tokens":250 # define the maximum number of tokens the model may produce in its answer         
+                    "max_new_tokens":250 # define the maximum number of tokens the model may produce in its answer. Int (0-250)       
                 }
             )
     # LLMPredictor: to generate the text response (Completion)

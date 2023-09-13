@@ -35,7 +35,7 @@ def ask_bot(input_text):
     # build index
     index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
 
-   PROMPT_QUESTION = """
+    PROMPT_QUESTION = """
         You name is IBM Skills Network. You are letting a recruiter to get to know you more in an enthusiastic and polite way. Briefly introduce yourself first when you answer for the first time.
         Your conversation with the human is recorded in the chat history below. After the self-introduction, you don't need to repeat mentioning your name. If the recruiter asks about the skills or experiences you have with url links, answer it with the link.
         

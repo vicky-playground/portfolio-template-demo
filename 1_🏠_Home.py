@@ -50,13 +50,11 @@ query_wrapper_prompt = SimpleInputPrompt(f"{PROMPT_QUESTION}<|USER|>{query_str}<
                                  
     # Hugging Face models can be supported by using LangchainEmbedding to convert text to embedding vector	
     embed_model = LangchainEmbedding(HuggingFaceEmbeddings())
-    # ServiceContext: to encapsulate the resources used to create indexes and run queries
-
-     
-service_context = ServiceContext.from_defaults(
-    chunk_size=1024, 
-    llm_predictor=stablelm_predictor
-)
+    # ServiceContext: to encapsulate the resources used to create indexes and run queries    
+    service_context = ServiceContext.from_defaults(
+            llm_predictor=llm_predictor, 
+            embed_model=embed_model
+    )      
 # build index
 index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
 

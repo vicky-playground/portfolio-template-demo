@@ -32,7 +32,7 @@ PROMPT_QUESTION = """
 query_wrapper_prompt = SimpleInputPrompt(f"{PROMPT_QUESTION}<|USER|>{query_str}<|ASSISTANT|>")
 
 
- llm = HuggingFaceEndpoint(
+llm = HuggingFaceEndpoint(
                 endpoint_url= "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct" ,
                 huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
                 task="text-generation",

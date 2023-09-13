@@ -16,7 +16,7 @@ def ask_bot(input_text):
     documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
     # prepare Falcon Huggingface API
     llm = HuggingFaceEndpoint(
-                endpoint_url= "https://api-inference.huggingface.co/models/cerebras/btlm-3b-8k-base" ,
+                endpoint_url= "https://api-inference.huggingface.co/models/distilgpt2" ,
                 huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
                 task="text-generation",
                 model_kwargs = {

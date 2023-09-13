@@ -7,7 +7,6 @@ from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader, LLMPredictor
 from langchain.llms import HuggingFaceEndpoint
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 from langchain import HuggingFaceHub
-from llama_index.llm_predictor import HuggingFaceLLMPredictor
 from llama_index.prompts.prompts import SimpleInputPrompt
 
 

@@ -16,7 +16,11 @@ conversation_history = []
 # load the file
 documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
 
-PROMPT_QUESTION = """
+
+
+
+def ask_bot(input_text):
+    PROMPT_QUESTION = """
     Your name is IBM Skills Network. You are providing the answer to the question based on the given context. Briefly introduce yourself first when you answer for the first time.
     Your conversation with the human is recorded in the chat history below. After the self-introduction, you don't need to repeat mentioning your name or introducing yourself actively. If the recruiter asks about the skills or experiences you have with url links, answer it with the link.
     
@@ -26,9 +30,7 @@ PROMPT_QUESTION = """
     Now continue the conversation with the human. If you do not know the answer, politely ask for more information.
     Human: {input}
     Assistant:"""
-
-
-def ask_bot(input_text):
+    
     # This will wrap the default prompts that are internal to llama-index
     query_wrapper_prompt = SimpleInputPrompt(f"{PROMPT_QUESTION}<|USER|>{input_text}<|ASSISTANT|>")
     
@@ -37,9 +39,8 @@ def ask_bot(input_text):
                     endpoint_url= "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct" ,
                     huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
                     task="text-generation",
-                    temperature=0.7,
                     model_kwargs = {
-                        "max_new_tokens":250 # define the maximum number of tokens the model may produce in its answer. Int (0-250)       
+                        "max_new_tokens":256 # define the maximum number of tokens the model may produce in its answer. Int (0-250)       
                     }
                 )
     # LLMPredictor: to generate the text response (Completion)

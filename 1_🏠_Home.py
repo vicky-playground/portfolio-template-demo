@@ -42,19 +42,19 @@ llm = HuggingFaceEndpoint(
                 }
             )
     # LLMPredictor: to generate the text response (Completion)
-    llm_predictor = LLMPredictor(
+llm_predictor = LLMPredictor(
         llm=llm,
         system_prompt=system_prompt, # added in llama-index by myself
         query_wrapper_prompt=query_wrapper_prompt # added in llama-index by myself
-    )
+)
                                  
-    # Hugging Face models can be supported by using LangchainEmbedding to convert text to embedding vector	
-    embed_model = LangchainEmbedding(HuggingFaceEmbeddings())
-    # ServiceContext: to encapsulate the resources used to create indexes and run queries    
-    service_context = ServiceContext.from_defaults(
-            llm_predictor=llm_predictor, 
-            embed_model=embed_model
-    )      
+# Hugging Face models can be supported by using LangchainEmbedding to convert text to embedding vector	
+embed_model = LangchainEmbedding(HuggingFaceEmbeddings())
+# ServiceContext: to encapsulate the resources used to create indexes and run queries    
+service_context = ServiceContext.from_defaults(
+        llm_predictor=llm_predictor, 
+        embed_model=embed_model
+)      
 # build index
 index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
 

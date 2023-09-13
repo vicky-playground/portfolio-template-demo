@@ -46,7 +46,7 @@ def ask_bot(input_text):
     # LLMPredictor: to generate the text response (Completion)
     llm_predictor = LLMPredictor(
             llm=llm,
-            system_prompt=system_prompt, # added in llama-index by myself
+            system_prompt=PROMPT_QUESTION, # added in llama-index by myself
             query_wrapper_prompt=query_wrapper_prompt # added in llama-index by myself
     )
                                      

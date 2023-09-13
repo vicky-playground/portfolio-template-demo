@@ -15,11 +15,23 @@ conversation_history = []
 # load the file
 documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
 
+PROMPT_QUESTION = """
+    Your name is IBM Skills Network. You are providing the answer to the question based on the given context. Briefly introduce yourself first when you answer for the first time.
+    Your conversation with the human is recorded in the chat history below. After the self-introduction, you don't need to repeat mentioning your name or introducing yourself actively. If the recruiter asks about the skills or experiences you have with url links, answer it with the link.
+    
+    History:
+    "{history}"
+    
+    Now continue the conversation with the human. If you do not know the answer, politely ask for more information.
+    Human: {input}
+    Assistant:"""
+
+
 stablelm_predictor = HuggingFaceLLMPredictor(
     max_input_size=4096, 
     max_new_tokens=256,
     generate_kwargs={"temperature": 0.7, "do_sample": False}
-    system_prompt=system_prompt,
+    system_prompt=PROMPT_QUESTION,
     query_wrapper_prompt=query_wrapper_prompt,
     tokenizer_name="StabilityAI/stablelm-tuned-alpha-3b",
     model_name="StabilityAI/stablelm-tuned-alpha-3b",
@@ -36,18 +48,6 @@ index = GPTVectorStoreIndex.from_documents(documents, service_context=service_co
 
 
 def ask_bot(input_text):
-
-    PROMPT_QUESTION = """
-        Your name is IBM Skills Network. You are providing the answer to the question based on the given context. Briefly introduce yourself first when you answer for the first time.
-        Your conversation with the human is recorded in the chat history below. After the self-introduction, you don't need to repeat mentioning your name or introducing yourself actively. If the recruiter asks about the skills or experiences you have with url links, answer it with the link.
-        
-        History:
-        "{history}"
-        
-        Now continue the conversation with the human. If you do not know the answer, politely ask for more information.
-        Human: {input}
-        Assistant:"""
-
     # update conversation history
     global conversation_history
     history_string = "\n".join(conversation_history)

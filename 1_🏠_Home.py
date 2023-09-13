@@ -29,14 +29,13 @@ PROMPT_QUESTION = """
     Assistant:"""
 
 # This will wrap the default prompts that are internal to llama-index
-query_wrapper_prompt = SimpleInputPrompt("<|USER|>{query_str}<|ASSISTANT|>")
+query_wrapper_prompt = SimpleInputPrompt(f"{PROMPT_QUESTION}<|USER|>{query_str}<|ASSISTANT|>")
 
 
 stablelm_predictor = HuggingFaceLLMPredictor(
     max_input_size=4096, 
     max_new_tokens=256,
     generate_kwargs={"temperature": 0.7, "do_sample": False}
-    system_prompt=PROMPT_QUESTION,
     query_wrapper_prompt=query_wrapper_prompt,
     tokenizer_name="StabilityAI/stablelm-tuned-alpha-3b",
     model_name="StabilityAI/stablelm-tuned-alpha-3b",

@@ -19,7 +19,7 @@ documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
 def ask_bot(input_text):
 
     llm = HuggingFaceEndpoint(
-                    endpoint_url= "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct" ,
+                    endpoint_url= "https://api-inference.huggingface.co/models/thenlper/gte-large" ,
                     huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
                     task="text-generation",
                     model_kwargs = {

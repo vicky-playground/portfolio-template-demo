@@ -27,38 +27,39 @@ PROMPT_QUESTION = """
     Human: {input}
     Assistant:"""
 
-# This will wrap the default prompts that are internal to llama-index
-query_wrapper_prompt = SimpleInputPrompt(f"{PROMPT_QUESTION}<|USER|>{query_str}<|ASSISTANT|>")
-
-
-llm = HuggingFaceEndpoint(
-                endpoint_url= "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct" ,
-                huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
-                task="text-generation",
-                temperature=0.7,
-                model_kwargs = {
-                    "max_new_tokens":250 # define the maximum number of tokens the model may produce in its answer. Int (0-250)       
-                }
-            )
-    # LLMPredictor: to generate the text response (Completion)
-llm_predictor = LLMPredictor(
-        llm=llm,
-        system_prompt=system_prompt, # added in llama-index by myself
-        query_wrapper_prompt=query_wrapper_prompt # added in llama-index by myself
-)
-                                 
-# Hugging Face models can be supported by using LangchainEmbedding to convert text to embedding vector	
-embed_model = LangchainEmbedding(HuggingFaceEmbeddings())
-# ServiceContext: to encapsulate the resources used to create indexes and run queries    
-service_context = ServiceContext.from_defaults(
-        llm_predictor=llm_predictor, 
-        embed_model=embed_model
-)      
-# build index
-index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
-
 
 def ask_bot(input_text):
+    # This will wrap the default prompts that are internal to llama-index
+    query_wrapper_prompt = SimpleInputPrompt(f"{PROMPT_QUESTION}<|USER|>{input_text}<|ASSISTANT|>")
+    
+    
+    llm = HuggingFaceEndpoint(
+                    endpoint_url= "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct" ,
+                    huggingfacehub_api_token="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", # Replace with your own API key or use ours: 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
+                    task="text-generation",
+                    temperature=0.7,
+                    model_kwargs = {
+                        "max_new_tokens":250 # define the maximum number of tokens the model may produce in its answer. Int (0-250)       
+                    }
+                )
+    # LLMPredictor: to generate the text response (Completion)
+    llm_predictor = LLMPredictor(
+            llm=llm,
+            system_prompt=system_prompt, # added in llama-index by myself
+            query_wrapper_prompt=query_wrapper_prompt # added in llama-index by myself
+    )
+                                     
+    # Hugging Face models can be supported by using LangchainEmbedding to convert text to embedding vector	
+    embed_model = LangchainEmbedding(HuggingFaceEmbeddings())
+    # ServiceContext: to encapsulate the resources used to create indexes and run queries    
+    service_context = ServiceContext.from_defaults(
+            llm_predictor=llm_predictor, 
+            embed_model=embed_model
+    )      
+    # build index
+    index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
+
+
     # update conversation history
     global conversation_history
     history_string = "\n".join(conversation_history)

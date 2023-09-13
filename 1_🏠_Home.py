@@ -8,6 +8,8 @@ from langchain.llms import HuggingFaceEndpoint
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 from langchain import HuggingFaceHub
 from llama_index.llm_predictor import HuggingFaceLLMPredictor
+from llama_index.prompts.prompts import SimpleInputPrompt
+
 
 # Store the conversation history in a List
 conversation_history = []
@@ -25,6 +27,9 @@ PROMPT_QUESTION = """
     Now continue the conversation with the human. If you do not know the answer, politely ask for more information.
     Human: {input}
     Assistant:"""
+
+# This will wrap the default prompts that are internal to llama-index
+query_wrapper_prompt = SimpleInputPrompt("<|USER|>{query_str}<|ASSISTANT|>")
 
 
 stablelm_predictor = HuggingFaceLLMPredictor(

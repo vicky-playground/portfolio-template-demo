@@ -105,12 +105,13 @@ def ask_bot(input_text):
     history_string = "\n".join(conversation_history)
     print(f"history_string: {history_string}")  
     # query LlamaIndex and Falcon-7B-Instruct for the AI's response
-    output = index.as_query_engine().query(PROMPT_QUESTION.format(history=history_string, input=input_text))
+    #output = index.as_query_engine().query(PROMPT_QUESTION.format(history=history_string, input=input_text))
+    output = index.as_query_engine().query(input=input_text)
     print(f"output: {output}")   
     # update conversation history with user input and AI's response
     conversation_history.append(input_text)
     conversation_history.append(output.response)
-    return output.response
+    return output
 
 # get the user's input by calling the get_text function
 def get_text():

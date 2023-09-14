@@ -4,13 +4,10 @@ st.set_page_config(page_title='Template' ,layout="wide",page_icon='👧🏻')
 # Import necessary libraries
 import torch
 from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader, LLMPredictor, ServiceContext, LangchainEmbedding
-# Llamaindex also works with langchain framework to implement embeddings to configure the Falcon-7B-Instruct model from Hugging Face 
-from langchain.llms import HuggingFaceEndpoint
+# Llamaindex also works with langchain framework to implement embeddings
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
-from langchain import HuggingFaceHub
 from llama_index.prompts.prompts import SimpleInputPrompt
-from langchain.llms import HuggingFaceHub
 from ibm_watson_machine_learning.foundation_models.extensions.langchain import WatsonxLLM
 from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes, DecodingMethods
 from ibm_watson_machine_learning.metanames import GenTextParamsMetaNames as GenParams

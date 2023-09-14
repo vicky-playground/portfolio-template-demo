@@ -8,3 +8,7 @@ llama-cpp-python==0.1.9
 nltk==3.8.1
 huggingface-hub==0.16.4
 sentence_transformers
+InstructorEmbedding==1.0.0
+huggingface-hub==0.16.4
+ibm-watson-machine-learning
+

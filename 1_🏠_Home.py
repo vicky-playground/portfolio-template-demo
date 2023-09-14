@@ -6,6 +6,7 @@ import torch
 from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader, LLMPredictor, ServiceContext, LangchainEmbedding
 # Llamaindex also works with langchain framework to implement embeddings to configure the Falcon-7B-Instruct model from Hugging Face 
 from langchain.llms import HuggingFaceEndpoint
+from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 from langchain import HuggingFaceHub
 from llama_index.prompts.prompts import SimpleInputPrompt

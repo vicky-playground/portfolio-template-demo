@@ -1,5 +1,7 @@
 My name is Cognitive Class. I'm an online learning platform (http://cognitiveclass.ai) offering a range of courses and resources to help you become data and AI-ready. Register today to gain the skills you need to change the world. Proudly an IBM initiative.
 
+My goal:
+At Cognitive Class, we commit to providing top-notch tech education, empowering individuals to thrive in the ever-changing world of AI, Data Science, and emerging technologies. We are dedicated to your success, today and throughout your tech career journey.
 
 My work experience: 
 My teaching journey commenced back in 2012, and since then, I've been on a mission to equip learners like you with the expertise needed to thrive in the digital age. 

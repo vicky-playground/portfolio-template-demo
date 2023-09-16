@@ -43,15 +43,15 @@ def init_llm():
         'apikey' : Watsonx_API
     }
 
-    model_id = ModelTypes.FLAN_UL2
+    model_id = ModelTypes.GPT_NEOX
     
-    LLAMA2_model = Model(
+    model = Model(
         model_id= model_id,
         credentials=credentials,
         params=params,
         project_id=Project_id)
 
-    llm_hub = WatsonxLLM(model=LLAMA2_model)
+    llm_hub = WatsonxLLM(model=model)
 
     #Initialize embeddings using a pre-trained model to represent the text data.
     embeddings = HuggingFaceInstructEmbeddings(

@@ -58,9 +58,6 @@ def init_llm():
 
 init_llm()
 
-# Store the conversation history in a List
-conversation_history = []
-
 # load the file
 documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
 
@@ -81,32 +78,13 @@ service_context = ServiceContext.from_defaults(
 # build index
 index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
 
-PROMPT_QUESTION = """
-Your name is IBM Skills Network. Briefly introduce yourself first if it's the first time answering a question.
-Your conversation with the human is recorded in the chat history below. After the self-introduction, you don't need to repeat mentioning your name or introducing yourself actively. If the recruiter asks about the skills or experiences you have with url links, answer it with the link.
-
-History:
-"{history}"
-
-Now continue the conversation with the human. If you do not know the answer, politely ask for more information.
-Human: {input}
-Assistant:"""
-
 def ask_bot(input_text):
 
-    global index, PROMPT_QUESTION, conversation_history
-    
-    # update conversation history
-    history_string = "\n".join(conversation_history)
-    print(f"history_string: {history_string}")
-    
+    global index
+ 
     # query LlamaIndex and GPT-3.5 for the AI's response
-    output = index.as_query_engine().query(PROMPT_QUESTION.format(history=history_string, input=input_text))
+    output = index.as_query_engine().query(input_text)
     print(f"output: {output}")
-    
-    # update conversation history with user input and AI's response
-    conversation_history.append(input_text)
-    conversation_history.append(output.response)
     
     return output
 

@@ -65,6 +65,9 @@ conversation_history = []
 
 def ask_bot(input_text):
 
+    # load the file
+    documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
+
     # LLMPredictor: to generate the text response (Completion)
     llm_predictor = LLMPredictor(
             llm=llm_hub

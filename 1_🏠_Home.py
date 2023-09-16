@@ -64,37 +64,38 @@ conversation_history = []
 # load the file
 documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
 
+# LLMPredictor: to generate the text response (Completion)
+llm_predictor = LLMPredictor(
+        llm=llm_hub
+)
+                                 
+# Hugging Face models can be supported by using LangchainEmbedding to convert text to embedding vector	
+embed_model = LangchainEmbedding(embeddings)
+#embed_model = LangchainEmbedding(HuggingFaceEmbeddings())
+
+# ServiceContext: to encapsulate the resources used to create indexes and run queries    
+service_context = ServiceContext.from_defaults(
+        llm_predictor=llm_predictor, 
+        embed_model=embed_model
+)      
+# build index
+index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
+
+PROMPT_QUESTION = """
+Your name is IBM Skills Network. Briefly introduce yourself first if it's the first time answering a question.
+Your conversation with the human is recorded in the chat history below. After the self-introduction, you don't need to repeat mentioning your name or introducing yourself actively. If the recruiter asks about the skills or experiences you have with url links, answer it with the link.
+
+History:
+"{history}"
+
+Now continue the conversation with the human. If you do not know the answer, politely ask for more information.
+Human: {input}
+Assistant:"""
+
+
 def ask_bot(input_text):
 
-    global documents
-
-    # LLMPredictor: to generate the text response (Completion)
-    llm_predictor = LLMPredictor(
-            llm=llm_hub
-    )
-                                     
-    # Hugging Face models can be supported by using LangchainEmbedding to convert text to embedding vector	
-    embed_model = LangchainEmbedding(embeddings)
-    #embed_model = LangchainEmbedding(HuggingFaceEmbeddings())
-    
-    # ServiceContext: to encapsulate the resources used to create indexes and run queries    
-    service_context = ServiceContext.from_defaults(
-            llm_predictor=llm_predictor, 
-            embed_model=embed_model
-    )      
-    # build index
-    index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
-
-    PROMPT_QUESTION = """
-    Your name is IBM Skills Network. Briefly introduce yourself first if it's the first time answering a question.
-    Your conversation with the human is recorded in the chat history below. After the self-introduction, you don't need to repeat mentioning your name or introducing yourself actively. If the recruiter asks about the skills or experiences you have with url links, answer it with the link.
-    
-    History:
-    "{history}"
-    
-    Now continue the conversation with the human. If you do not know the answer, politely ask for more information.
-    Human: {input}
-    Assistant:"""
+    global index, PROMPT_QUESTION
     
     # update conversation history
     global conversation_history

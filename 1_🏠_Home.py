@@ -108,7 +108,7 @@ def ask_bot(input_text):
     conversation_history.append(input_text)
     conversation_history.append(output.response)
     
-    return output.response
+    return output
 
 # get the user's input by calling the get_text function
 def get_text():

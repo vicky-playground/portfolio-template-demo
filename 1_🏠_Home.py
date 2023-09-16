@@ -42,9 +42,11 @@ def init_llm():
         'url': "https://us-south.ml.cloud.ibm.com",
         'apikey' : Watsonx_API
     }
+
+    model_id = ModelTypes.FLAN_UL2
     
     LLAMA2_model = Model(
-        model_id= 'meta-llama/llama-2-70b-chat',
+        model_id= model_id,
         credentials=credentials,
         params=params,
         project_id=Project_id)

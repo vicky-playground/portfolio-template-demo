@@ -22,15 +22,15 @@ chat_history = []
 llm_hub = None
 embeddings = None
 
-Watsonx_API = "uvnQIfnjPk2Jpszy0hAvr80xCUAudclZsltCi3gYxAVu"
-Project_id= "177ab670-c7d0-4f34-894f-228297d644d9"
+Watsonx_API = "Watsonx_API"
+Project_id= "Project_id"
 
 # Function to initialize the language model and its embeddings
 def init_llm():
     global llm_hub, embeddings
     
     params = {
-        GenParams.MAX_NEW_TOKENS: 1024, # The maximum number of tokens that the model can generate in a single run.
+        GenParams.MAX_NEW_TOKENS: 250, # The maximum number of tokens that the model can generate in a single run.
         GenParams.MIN_NEW_TOKENS: 1,   # The minimum number of tokens that the model should generate in a single run.
         GenParams.DECODING_METHOD: DecodingMethods.SAMPLE, # The method used by the model for decoding/generating new tokens. In this case, it uses the sampling method.
         GenParams.TEMPERATURE: 0.1,   # A parameter that controls the randomness of the token generation. A lower value makes the generation more deterministic, while a higher value introduces more randomness.
@@ -60,9 +60,6 @@ init_llm()
 
 # Store the conversation history in a List
 conversation_history = []
-
-# load the file
-documents = SimpleDirectoryReader(input_files=["data.txt"]).load_data()
 
 def ask_bot(input_text):
 

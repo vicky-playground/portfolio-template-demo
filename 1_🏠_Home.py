@@ -92,13 +92,11 @@ Now continue the conversation with the human. If you do not know the answer, pol
 Human: {input}
 Assistant:"""
 
-
 def ask_bot(input_text):
 
-    global index, PROMPT_QUESTION
+    global index, PROMPT_QUESTION, conversation_history
     
     # update conversation history
-    global conversation_history
     history_string = "\n".join(conversation_history)
     print(f"history_string: {history_string}")
     

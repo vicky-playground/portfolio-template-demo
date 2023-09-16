@@ -43,7 +43,7 @@ def init_llm():
         'apikey' : Watsonx_API
     }
 
-    model_id = ModelTypes.GPT_NEOX
+    model_id = ModelTypes.LLAMA_2_70B_CHAT
     
     model = Model(
         model_id= model_id,

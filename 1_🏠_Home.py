@@ -22,8 +22,8 @@ chat_history = []
 llm_hub = None
 embeddings = None
 
-Watsonx_API = "Watsonx_API"
-Project_id= "Project_id"
+Watsonx_API = "uvnQIfnjPk2Jpszy0hAvr80xCUAudclZsltCi3gYxAVu"
+Project_id= "177ab670-c7d0-4f34-894f-228297d644d9"
 
 # Function to initialize the language model and its embeddings
 def init_llm():

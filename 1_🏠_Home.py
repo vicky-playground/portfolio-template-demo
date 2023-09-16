@@ -17,8 +17,6 @@ from ibm_watson_machine_learning.foundation_models import Model
 DEVICE = "cuda:0" if torch.cuda.is_available() else "cpu"
 
 # Global variables
-conversation_retrieval_chain = None
-chat_history = []
 llm_hub = None
 embeddings = None
 
@@ -98,22 +96,20 @@ def ask_bot(input_text):
     Human: {input}
     Assistant:"""
     
-    # This will wrap the default prompts that are internal to llama-index
-    query_wrapper_prompt = SimpleInputPrompt(f"{PROMPT_QUESTION}<|USER|>{input_text}<|ASSISTANT|>")
-    
     # update conversation history
     global conversation_history
     history_string = "\n".join(conversation_history)
-    print(f"history_string: {history_string}")  
+    print(f"history_string: {history_string}")
     
-    # query LlamaIndex and LLAMA_2_70B_CHAT for the AI's response
-    output = index.as_query_engine().query(input_text)
-    print(f"output: {output}")   
+    # query LlamaIndex and GPT-3.5 for the AI's response
+    output = index.as_query_engine().query(PROMPT_QUESTION.format(history=history_string, input=input_text))
+    print(f"output: {output}")
     
     # update conversation history with user input and AI's response
     conversation_history.append(input_text)
     conversation_history.append(output.response)
-    return output
+    
+    return output.response
 
 # get the user's input by calling the get_text function
 def get_text():

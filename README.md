@@ -1,20 +1,3 @@
 # Portfolio Website
-A portfolio website built with Streamlit and an open-source LLM. The website is deployed [here](https://vicky-playground-portfolio-template-1--home-ehxx2f.streamlit.app/).
+A portfolio website built with Watsonx and Streamlit. The website is deployed on IBM Cloud. Check the [demo here](https://application-86.xs6r134s1i6.us-east.codeengine.appdomain.cloud/).
 
-## Copy this repo
-```
-git clone [https://github.com/vicky-playground/portfolio-template-demo](https://github.com/vicky-playground/portfolio-template-demo)
-```
-## Installation
-```
-pip install -r requirements.txt
-```
-
-```
-pip freeze > requirements.txt
-```
-
-## Get it up and running
-```
-streamlit run 1_Home.py
-```

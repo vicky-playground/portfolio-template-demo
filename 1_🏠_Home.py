@@ -82,7 +82,7 @@ def ask_bot(input_text):
 
     global index
  
-    # query LlamaIndex and GPT-3.5 for the AI's response
+    # query LlamaIndex and LLAMA_2_70B_CHAT for the AI's response
     output = index.as_query_engine().query(input_text)
     print(f"output: {output}")
     

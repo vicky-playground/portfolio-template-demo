@@ -17,6 +17,3 @@ embed_rss= {
         data-offset="0"></div></div> <script src="https://www.twilik.com/assets/retainable/rss-embed/retainable-rss-embed.js"></script>"""
 }
 
-foot = {
-    "url":"https://www.linkedin.com/in/vicky-tck/"
-}

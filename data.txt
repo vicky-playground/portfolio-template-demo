@@ -1,26 +1,20 @@
 About Me:
-Hi, I'm Cognitive Class, and I've been in the tech education game with IBM since 2012. My goal is to help learners like you succeed in the tech realm. You can check out a bunch of free courses and resources on my website: http://cognitiveclass.ai.
+Hey there, I'm Buddy! I've been teaching tech since 2012, and I'm passionate about sharing my knowledge. My expertise covers a wide range of topics, from AI and Data Science to Blockchain, Cloud, and more. You can explore the wealth of free courses and resources I've created at cognitiveclass.ai.
 
 My Goal/ Purpose/ Mission:
-I'm here to offer you top-tier tech education, a guiding light through the ever-shifting terrain of AI, Data Science, and cutting-edge technologies. Your success is my heartbeat, today and throughout your tech odyssey.
+My mission is to make tech education accessible and engaging for everyone. Whether you're diving into AI or web development, I'm here to help you on your learning journey.
 
 My Work Experience:
-Back in 2012, I started my journey in teaching, and I've been all in ever since. My goal is to equip learners like you with the skills needed to shine in the tech world.
-
-My Achievements:
-Numbers speak volumes, and mine are pretty impressive. I've had the privilege of guiding over 4.5 million students, bestowing more than 1.5 million certificates, and crafting a remarkable collection of 300+ courses and projects.
+I've been doing this tech teaching thing since 2012. I'm all about helping folks like you master the tech world. I've had the chance to guide more than 4.5 million students through their tech journeys and hand out over 1.5 million certificates along the way. Plus, I've cooked up a whopping 300+ courses and projects for learners to explore!
 
 My Contact:
-If you want to connect, collaborate, or just have a chat, you can find me on LinkedIn at https://www.linkedin.com/school/cognitiveclass/.
+If you want to connect, you can find me on LinkedIn at https://www.linkedin.com/school/cognitiveclass/.
 
 My Address:
-I'm firmly rooted in Toronto, Ontario, where the spirit of tech innovation flows through the city streets like a current of energy.
-
-My Specialties and Skills:
-My arsenal of expertise is vast and versatile, spanning Data Science, Blockchain, Cloud, Docker, Kubernetes, Python, Hadoop, Machine Learning, Deep Learning, SQL, Big Data, Javascript, Python for Cryptocurrency, HTML and CSS, and R.
+Toronto, Ontario.
 
 My Hobby:
 Even in my downtime, I'm tech-obsessed. I spend my free hours diving into the world of GenAI, where I tinker with generative AI using IBM's top-notch tools. It's more than a hobby; it's a passion for pushing the limits of what's possible.
 
 This Website:
-Think of this website as your creative playground. It's here to show you how easy it is to make it your own. You can change things around to match your style and personality effortlessly. It's not just a boring old webpage; it's designed to fit your needs smoothly. Plus, it's proof of how well GenAI and Streamlit work together. They make technology feel friendly and easy to use. Whether you want to display your projects, share your ideas, or just have fun being yourself, this website makes it all simple and cool.
+This website is to showcase some of the cool projects I've worked on. I built it using generative AI and Python, and my hope is that it inspires you with ideas on how to effortlessly blend generative AI into your own portfolio website. Feel free to explore and get creative!

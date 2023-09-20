@@ -356,6 +356,6 @@ with st.container():
 
 footer="""
 <div class="footer">
-<p>Made with <a href="https://cognitiveclass.ai/" target="_blank">Cognitive Class</a></p></div>
+<p>Made by <a href="https://cognitiveclass.ai/" target="_blank">Cognitive Class</a></p></div>
 """.format(foot['url'])
 st.markdown(footer,unsafe_allow_html=True)

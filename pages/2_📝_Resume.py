@@ -23,4 +23,5 @@ with open("images/resume.pdf","rb") as f:
 footer="""
 <div class="footer">
 <p>Made by <a href="https://cognitiveclass.ai/" target="_blank">Cognitive Class</a></p></div>
+"""
 st.markdown(footer,unsafe_allow_html=True)

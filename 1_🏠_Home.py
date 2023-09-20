@@ -143,7 +143,7 @@ with st.container():
     col1,col2 = st.columns([8,3])
 
 with col1:
-    gradient('#FFD4DD','#000395','e0fbfc',"Hi, I'm Buddy👋", "A Tech Educator and AI Enthusiast at cognitiveclass.ai/")
+    gradient('#FFD4DD','#000395','e0fbfc',"Hi, I'm Buddy👋", "A Tech Educator and AI Enthusiast at cognitiveclass.ai")
     st.write("")
     st.write(info['About'])
     
@@ -356,6 +356,6 @@ with st.container():
 
 footer="""
 <div class="footer">
-<p>Developed with Streamlit by <a href="https://cognitiveclass.ai/" target="_blank">IBM Skills Network</a></p></div>
+<p>Made with <a href="https://cognitiveclass.ai/" target="_blank">Cognitive Class</a></p></div>
 """.format(foot['url'])
 st.markdown(footer,unsafe_allow_html=True)

@@ -88,7 +88,7 @@ def ask_bot(input_text):
     """
     
     # query LlamaIndex and LLAMA_2_70B_CHAT for the AI's response
-    output = query_engine.query(PROMPT_QUESTION.format(input=input_text))
+    output = index.as_query_engine().query(PROMPT_QUESTION.format(input=input_text))
     print(f"output: {output}")
     
     return output

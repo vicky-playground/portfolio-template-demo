@@ -11,4 +11,4 @@ InstructorEmbedding==1.0.0
 huggingface-hub==0.16.4
 ibm-watson-machine-learning
 torch==2.0.1
-
+llama_index.utilities

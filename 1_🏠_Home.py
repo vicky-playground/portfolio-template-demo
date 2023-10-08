@@ -318,7 +318,7 @@ with st.container():
             dots[slideIndex-1].className += " active";
             }
 
-            var interval = setInterval(showSlides, 1200); // Change image every 1.2 seconds
+            var interval = setInterval(showSlides, 2500); // Change image every 2.5 seconds
 
             function pauseSlides(event)
             {
@@ -326,7 +326,7 @@ with st.container():
             }
             function resumeSlides(event)
             {
-                interval = setInterval(showSlides, 1200);
+                interval = setInterval(showSlides, 2500);
             }
             // Set up event listeners for the mySlides
             var mySlides = document.getElementsByClassName("mySlides");

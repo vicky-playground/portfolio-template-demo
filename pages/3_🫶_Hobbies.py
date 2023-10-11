@@ -30,6 +30,6 @@ with col3:
 # -----------------  footer  ----------------- #
 footer="""
 <div class="footer">
-<p>Made by <a href="https://cognitiveclass.ai/" target="_blank">Cognitive Class</a></p></div>
+<p>Made by <a href="https://www.linkedin.com/in/vicky-tck/" target="_blank">Vicky Kuo</a></p></div>
 """
 st.markdown(footer,unsafe_allow_html=True)

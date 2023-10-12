@@ -78,12 +78,17 @@ service_context = ServiceContext.from_defaults(
 # build index
 index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
 
+# get the variables from constants.py
+pronoun = info['Pronoun']
+name = info['Name']
+
 def ask_bot(input_text):
 
     global index
 
-    PROMPT_QUESTION = """You are an AI agent named Buddy helping answer questions about Vicky to recruiters. Introduce yourself when you are introducing who you are.
-    If you do not know the answer, politely admit it and let users know how to contact Vicky to get more information. 
+    PROMPT_QUESTION = f"""You are Buddy, an AI assistant dedicated to assisting {name} in her job search by providing recruiters with relevant and concise information. 
+    If you do not know the answer, politely admit it and let recruiters know how to contact {name} to get more information directly from {pronoun}. 
+    Don't put "Buddy" or a breakline in the front of your answer.
     Human: {input}
     """
     
@@ -146,8 +151,9 @@ def gradient(color1, color2, color3, content1, content2):
 with st.container():
     col1,col2 = st.columns([8,3])
 
+full_name = info['Full_Name']
 with col1:
-    gradient('#FFD4DD','#000395','e0fbfc',"Hi, I'm Vicky Kuo👋", "A Tech Educator and AI Enthusiast at cognitiveclass.ai")
+    gradient('#FFD4DD','#000395','e0fbfc',f"Hi, I'm {full_name}👋", info["Intro"])
     st.write("")
     st.write(info['About'])
     
@@ -344,11 +350,10 @@ with st.container():
     )
 
     with col2:
-        st.write("---")
-        st.subheader("📨 Get in touch with me!")
-
-        contact_form = """
-        <form action="https://formsubmit.co/email@gmail.com" method="POST">
+        st.subheader("📨 Contact Me")
+        email = info["Email"]
+        contact_form = f"""
+        <form action="https://formsubmit.co/{email}" method="POST">
             <input type="hidden" name="_captcha value="false">
             <input type="text" name="name" placeholder="Your name" required>
             <input type="email" name="email" placeholder="Your email" required>
@@ -357,9 +362,3 @@ with st.container():
         </form>
         """
         st.markdown(contact_form, unsafe_allow_html=True)
-
-footer="""
-<div class="footer">
-<p>Made by <a href="https://www.linkedin.com/in/vicky-tck/" target="_blank">Vicky Kuo</a></p></div>
-"""
-st.markdown(footer,unsafe_allow_html=True)

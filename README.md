@@ -3,9 +3,9 @@ A portfolio website built with Watsonx and Streamlit. The website is deployed on
 
 Sample questions to ask the chatbot:
 - hi
-- what's his contact?
-- what's his hobby?
-- what's his education background?
+- what's her contact?
+- what's her hobby?
+- what's her education background?
 
 ![gif](https://github.com/vicky-playground/portfolio-template-demo/assets/90204593/080e56b7-0953-4438-9ef4-6b3d80481bb2)
 

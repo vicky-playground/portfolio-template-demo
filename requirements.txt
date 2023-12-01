@@ -13,3 +13,4 @@ ibm-watson-machine-learning>=1.0.320
 torch==2.0.1
 langchain
 pydantic>=1.10.0
+langchain==0.0.254

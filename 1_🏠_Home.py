@@ -3,7 +3,8 @@ st.set_page_config(page_title='Template' ,layout="wide",page_icon='👧🏻')
 
 # Import necessary libraries
 import torch
-from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader, LLMPredictor, ServiceContext, LangchainEmbedding
+from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader, LLMPredictor, ServiceContext
+from llama_index.embeddings import LangchainEmbedding
 # Llamaindex also works with langchain framework to implement embeddings
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
